@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Header from 'components/Header.js';
 import { Image } from '@nextui-org/react';
-import {readFile, stat} from 'fs/promises'
+import {readFile, stat, readdir} from 'fs/promises'
 import Link from 'next/link';
 export default function Comic({img, alt, title, width, height, hasPrevious, hasNext, prevId, nextId}) {
   return(
@@ -14,12 +14,16 @@ export default function Comic({img, alt, title, width, height, hasPrevious, hasN
       <Header/>
       <main>
         <section className='max-w-lg m-auto'>
-        <h1 className='font-bold'>{title}</h1>
-        <Image src={img} width={width} height={height} alt={alt} />
+        <h1 className='font-bold text-center mb-4 text-xl'>{title}</h1>
+        <div className='max-w-xs m-auto mb-4'>
+        <Image src={img} layout="responsive" width={width} height={height} alt={alt} />
+        </div>
+       
         <p>{alt}</p>
-        <div className='flex justify-between'>
-         { hasPrevious && <Link className='text-gray-600' href={`${prevId}`}>Previous</Link>}
-         { hasNext && <Link className='text-gray-600' href={`${nextId}`}>Next</Link>}
+
+        <div className='flex justify-between mt-4 font-bold'>
+         { hasPrevious && <Link className='text-gray-600' href={`${prevId}`}>⬅ Previous</Link>}
+         { hasNext && <Link className='text-gray-600' href={`${nextId}`}>Next ➡</Link>}
         </div>
         </section>
       
@@ -30,18 +34,16 @@ export default function Comic({img, alt, title, width, height, hasPrevious, hasN
 
 
 export async function getStaticPaths(){
+  const files = await readdir('./comics');
+  const paths = files.map(file=>{return {params:{id:file}}})
+ 
   return {
-    paths:[
-      {params:{id:'2500'}},
-      {params:{id:'2501'}},
-      {params:{id:'2502'}},
-      {params:{id:'2503'}},
-    ],
+    paths,
     fallback:false,
   }
 }
 export async function getStaticProps({params}) {
-  const {id} = params;
+  const {id} = params; 
  const content =  await readFile(`./comics/${id}`, 'utf-8');
  const comic = JSON.parse(content);
  const idNumber = +id;

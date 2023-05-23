@@ -11,7 +11,9 @@ export default function Header() {
     >
       <div>
         <h1 className="font-bold">
+          <Link href='/' className='transition hover:opacity-50'>
           next<span className="font-light">xkcd</span>
+          </Link>
         </h1>
       </div>
 
@@ -27,11 +29,6 @@ export default function Header() {
           <li>
             <Link className="text-sm font-semibold" href="/">
               Home
-            </Link>
-          </li>
-          <li>
-            <Link className="text-sm font-semibold" href="/about">
-              About
             </Link>
           </li>
           <li>

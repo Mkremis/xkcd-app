@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/comic/[id]": [
+    "/search": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/comic/[id].js"
+      "static/chunks/pages/search.js"
     ]
   },
   "ampFirstPages": []

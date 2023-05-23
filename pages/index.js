@@ -1,10 +1,9 @@
-import Header from '../components/Header';
+import Header from '/components/Header';
 import fs from "fs/promises";
 import { Image, Link } from '@nextui-org/react';
-import { Masonry } from "masonic";
+import { Footer } from 'components/Footer';
 
 export default function Home({lastestComics}) {
-  console.log(lastestComics)
   return (
     <>
       <Header />
@@ -24,6 +23,7 @@ export default function Home({lastestComics}) {
     })}
         </section>
       </main>
+      <Footer/>
     </>
   );
 }
