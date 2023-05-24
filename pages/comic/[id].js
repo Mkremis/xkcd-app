@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Header from 'components/Header.js';
 import { Image } from '@nextui-org/react';
 import {readFile, stat, readdir} from 'fs/promises'
 import Link from 'next/link';
@@ -11,7 +10,6 @@ export default function Comic({img, alt, title, width, height, hasPrevious, hasN
         <meta name='description' content='Comics for developers'/>
         <link rel='icon' href=''/>
       </Head>
-      <Header/>
       <main>
         <section className='max-w-lg m-auto'>
         <h1 className='font-bold text-center mb-4 text-xl'>{title}</h1>

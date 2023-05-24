@@ -32,6 +32,11 @@ export default function Header() {
             </Link>
           </li>
           <li>
+            <Link className="text-sm font-semibold" href="/about">
+              About
+            </Link>
+          </li>
+          <li>
             <Link className="text-sm font-semibold" href="/search">
               Search
             </Link>

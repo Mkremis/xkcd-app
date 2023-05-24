@@ -1,20 +1,28 @@
-export default function Search({search}){
+import Head from 'next/head';
+export default function Search({query}){
     return (
-        <>
-        <h1>Resultado para query {search}</h1>
+        <> 
+     <Head>
+        <title>xkcd - Search Comics</title>
+        <meta name='description' content='Comics for developers'/>
+        <link rel='icon' href=''/>
+      </Head>
+      <main>
+      <h1>Resultado para query {query}</h1>
+      </main>
+      
         </>
     )
 }
 
 export async function getServerSideProps(context){
-    const query = {context};
-    console.log(query)
-    // const {search} = query;
+    // {q=null} para que por defecto tenga un valor (null) para evitar que de error en caso que el valor sea undefined 
+    const {q=null} = context.query;
 
     // llamar a la api de Algolia para buscar los resultados
     return{
         props:{
-            search
+          query:q
         }
     }
 
