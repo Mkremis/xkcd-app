@@ -3,9 +3,8 @@ export default function Search({query}){
     return (
         <> 
      <Head>
-        <title>xkcd - Search Comics</title>
-        <meta name='description' content='Comics for developers'/>
-        <link rel='icon' href=''/>
+        <title>xkcd - Results for query {query}</title>
+        <meta name='description' content={`Search results for query ${query}`}/>
       </Head>
       <main>
       <h1>Resultado para query {query}</h1>

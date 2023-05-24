@@ -4,8 +4,7 @@ export default function about(){
         <>
     <Head>
         <title>xkcd - About Us</title>
-        <meta name='description' content='Comics for developers'/>
-        <link rel='icon' href=''/>
+        <meta name='description' content='About Page'/>
     </Head>
       <main>
       <h1>About Page</h1>

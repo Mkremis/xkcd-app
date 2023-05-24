@@ -8,7 +8,6 @@ export default function Comic({img, alt, title, width, height, hasPrevious, hasN
         <Head>
         <title>xkcd - Comics for developers</title>
         <meta name='description' content='Comics for developers'/>
-        <link rel='icon' href=''/>
       </Head>
       <main>
         <section className='max-w-lg m-auto'>
