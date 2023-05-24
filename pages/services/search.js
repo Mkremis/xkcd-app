@@ -12,3 +12,4 @@ export default async function search(q){
     });
     return {hits}
 };
+ 
