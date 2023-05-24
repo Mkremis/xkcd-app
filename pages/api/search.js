@@ -1,7 +1,15 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import algoliasearch from 'algoliasearch/lite';
 
-export default (req, res) => {
-  // Open Chrome DevTools to step through the debugger!
-  // debugger;
-  res.status(200).json({ name: 'Hello, world!' });
+const client = algoliasearch('6M6MPFWU23', '7d6795fad561c8d663c8bde299b3650d');
+const index = client.initIndex('prod_comics');
+
+
+export default async (req, res) => {
+  const {query:{q}} = req;
+  const {hits} = await index.search(q,
+    {
+      attributesToRetrieve:['id', 'title', 'img', 'alt'],
+      hitsPerPage: 10
+    })
+  res.status(200).json(hits);
 };

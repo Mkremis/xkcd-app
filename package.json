@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "*",
+    "algoliasearch": "^4.17.1",
     "masonic": "^3.7.0",
     "next": "^13.4.3",
     "react": "^18.2.0",

@@ -1,9 +1,22 @@
 import Layout from 'components/Layout';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Search({query}){
+export default function Search({query, results}){
     return (
         <Layout title={`xkcd - Results for query ${query}`} description={`Search results for query ${query}`}>
-        <h1>Resultado para query {query}</h1>
+        <h1> {results.length} resultados para query {query}</h1>
+        {results.map(result=>{
+            return(
+                <Link href={`/comic/${result.id}`} key={result.id} className='flex flex-row justify-start bg-slate-300 hover:bg-salte-50 content-center'>
+                    <Image width={50} height={50} className='rounded-full' alt={result.alt} src={result.img}/>
+                    <div>
+                    <h2>{result.title}</h2>
+                    </div>
+                   
+                </Link>
+            )
+        })}
         </Layout>
     )
 }
@@ -13,9 +26,12 @@ export async function getServerSideProps(context){
     const {q=''} = context.query;
 
     // llamar a la api de Algolia para buscar los resultados
+    const results = await fetch(`http://localhost:3000/api/search?q=${q}`).then(res=>res.json())
+    console.log(results)
     return{
         props:{
-          query:q
+            query:q,
+            results
         }
     }
 
