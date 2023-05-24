@@ -1,18 +1,13 @@
-import Head from 'next/head';
 import fs from "fs/promises";
 import { Image, Link } from '@nextui-org/react';
-import { Footer } from 'components/Footer';
+import Layout from 'components/Layout';
+
 
 export default function Home({lastestComics}) {
   return (
-    <> 
-      <Head>
-        <title>xkcd - Home Page</title>
-        <meta name='description' content='Comics for developers'/>
-        <link rel='icon' href=''/>
-      </Head>
-      <main>
-        <h2 className='text-3xl font-bold text-center mb-10'>Latest Comics</h2>
+     
+    <Layout title={'xkcd - Home Page'} description={'Comics for developers'}>
+    <h2 className='text-3xl font-bold text-center mb-10'>Latest Comics</h2>
         <section className='grid grid-cols-1 gap-2 m-auto sm:grid-cols-2 md:grid-cols-3 items-baseline'>
         {lastestComics.map(comic=>{
       return(
@@ -26,9 +21,7 @@ export default function Home({lastestComics}) {
       )
     })}
         </section>
-      </main>
-      <Footer/>
-    </>
+    </Layout>
   );
 }
 export async function getStaticProps(context) {

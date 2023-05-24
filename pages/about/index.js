@@ -1,15 +1,8 @@
-import Head from 'next/head';
+import Layout from 'components/Layout';
 export default function about(){
     return (
-        <>
-    <Head>
-        <title>xkcd - About Us</title>
-        <meta name='description' content='About Page'/>
-    </Head>
-      <main>
-      <h1>About Page</h1>
-      </main>
-      
-        </>
+        <Layout title={'xkcd - About Us'} description={'About Page'}>
+        <h1>About Page</h1>
+        </Layout>
     )
 }

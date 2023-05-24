@@ -1,16 +1,11 @@
-import Head from 'next/head';
 import { Image } from '@nextui-org/react';
 import {readFile, stat, readdir} from 'fs/promises'
 import Link from 'next/link';
+import Layout from 'components/Layout';
 export default function Comic({img, alt, title, width, height, hasPrevious, hasNext, prevId, nextId}) {
   return(
-    <>
-        <Head>
-        <title>xkcd - Comics for developers</title>
-        <meta name='description' content='Comics for developers'/>
-      </Head>
-      <main>
-        <section className='max-w-lg m-auto'>
+    <Layout title={`xkcd - Comic ${title}`} description={`xkcd - Showing comic ${title}`}>
+    <section className='max-w-lg m-auto'>
         <h1 className='font-bold text-center mb-4 text-xl'>{title}</h1>
         <div className='max-w-xs m-auto mb-4'>
         <Image src={img} layout="responsive" width={width} height={height} alt={alt} />
@@ -23,9 +18,7 @@ export default function Comic({img, alt, title, width, height, hasPrevious, hasN
          { hasNext && <Link className='text-gray-600' href={`${nextId}`}>Next ➡</Link>}
         </div>
         </section>
-      
-      </main>
-    </>
+    </Layout>
   )
 }
 
