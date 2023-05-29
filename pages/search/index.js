@@ -1,7 +1,7 @@
 import Layout from 'components/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
-import search from 'pages/services/search';
+import search from 'services/search';
 
 export default function Search({query, results}){
     return (
@@ -26,6 +26,8 @@ export async function getServerSideProps(context){
     // {q=''} para que por defecto tenga un valor (string vacio) para evitar que de error en caso que el valor sea undefined 
     const {q=''} = context.query;
     const {hits} = await search(q);
+
+    console.log(q, hits)
 
    
     return{

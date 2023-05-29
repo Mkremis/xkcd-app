@@ -6,9 +6,12 @@ import { useRef, useState } from 'react';
 export default function Header() {
   const [results, setResults] = useState([]);
   const searchRef = useRef();
-  const q = searchRef.current?.value;
+
+  const getValue =()=> searchRef.current?.value;
   
   const handleChange = async ()=>{
+    const q = getValue();
+    if (!q) return;
    fetch(`/api/search?q=${q}`).then(res=>res.json()).then(hits=>setResults(hits))
   };
  
@@ -54,7 +57,7 @@ export default function Header() {
              Boolean(results.length) && <div className='absolute top-100 left-0'>
               <ul className='w-full overflow-hidden bg-white border rounded-lg shadow-xl border-gray-50 '>
               <li className='m-0'>
-                  <Link href={`/search?q=${q}`} className='italic text-gray-400 block px-2 py-1 text-sm font-semibold hover:bg-slate-200 text-ellipsis whitespace-nowrap'>
+                  <Link href={`/search?q=${getValue()}`} className='italic text-gray-400 block px-2 py-1 text-sm font-semibold hover:bg-slate-200 text-ellipsis whitespace-nowrap'>
                  ver {results.length} resultados
                   </Link>
                 </li>

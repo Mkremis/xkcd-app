@@ -1,4 +1,4 @@
-import search from 'pages/services/search';
+import search from 'services/search';
 
 export default async (req, res) => {
   const {query:{q}} = req;
