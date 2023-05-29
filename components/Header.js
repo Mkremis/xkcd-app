@@ -47,8 +47,9 @@ export default function Header() {
             </Link>
           </li>
           <li className='relative'>
-            <input type='search' className='border-gray-300 focus:border-blue-400 w-full text-sm leading-6 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-1.5 pl-2 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700' onChange={handleChange}/>
-            {results.length>0 && <ul className='absolute top-100 left-0'>{
+            <input type='search' className='px-4 py-1 border border-gray-400 focus:border-blue-400 rounded-lg' onChange={handleChange}/>
+            {
+             Boolean(results.length) && <ul className='absolute top-100 left-0'>{
               results.map(result=>{
                return(
                 <li key={result.id}>
