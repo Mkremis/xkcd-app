@@ -1,13 +1,15 @@
 import { Container, Card, Row, Text } from '@nextui-org/react';
 import { data } from 'autoprefixer';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Header() {
   const [results, setResults] = useState([]);
+  const searchRef = useRef();
+  const q = searchRef.current?.value;
   
-  const handleChange = async (e)=>{
-   fetch(`/api/search?q=${e.target.value}`).then(res=>res.json()).then(hits=>setResults(hits))
+  const handleChange = async ()=>{
+   fetch(`/api/search?q=${q}`).then(res=>res.json()).then(hits=>setResults(hits))
   };
  
 
@@ -46,20 +48,29 @@ export default function Header() {
               About
             </Link>
           </li>
-          <li className='relative'>
-            <input type='search' className='px-4 py-1 border border-gray-400 focus:border-blue-400 rounded-lg' onChange={handleChange}/>
+          <div className='relative z-50'>
+            <input type='search' className='px-4 py-1 border text-xs border-gray-400 focus:border-blue-400 rounded-lg' onChange={handleChange} ref={searchRef}/>
             {
-             Boolean(results.length) && <ul className='absolute top-100 left-0'>{
+             Boolean(results.length) && <div className='absolute top-100 left-0'>
+              <ul className='w-full overflow-hidden bg-white border rounded-lg shadow-xl border-gray-50 '>
+              <li className='m-0'>
+                  <Link href={`/search?q=${q}`} className='italic text-gray-400 block px-2 py-1 text-sm font-semibold hover:bg-slate-200 text-ellipsis whitespace-nowrap'>
+                 ver {results.length} resultados
+                  </Link>
+                </li>
+                {
               results.map(result=>{
                return(
-                <li key={result.id}>
-                  <Link href={`/comic/${result.id}`} className='text-sm font-semibold'>
+                <li className='m-0' key={result.id}>
+                  <Link href={`/comic/${result.id}`} className='block px-2 py-1 text-sm font-semibold hover:bg-slate-200 text-ellipsis whitespace-nowrap'>
                   {result.title}
                   </Link>
                 </li>
                )
-              })}</ul>}
-          </li>
+              })}
+              </ul>
+              </div>}
+          </div>
         </Container>
       </nav>
     </Container>
