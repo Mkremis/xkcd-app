@@ -13,7 +13,7 @@ export default function Layout({children, title, description}){
         <link rel='icon' href=''/>
       </Head>
       <Header/>
-      <main className='max-w-xl m-auto'>
+      <main className='m-auto'>
         {children}
       </main>
       <Footer/>

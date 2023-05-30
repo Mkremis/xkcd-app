@@ -1,20 +1,19 @@
 import { Container, Card, Row, Text } from '@nextui-org/react';
-import { data } from 'autoprefixer';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 
 export default function Header() {
   const [results, setResults] = useState([]);
   const searchRef = useRef();
-
+  const {locale, locales} = useRouter();
+  const restOfLocales = locales.filter(l=>l!==locale);
   const getValue =()=> searchRef.current?.value;
-  
   const handleChange = async ()=>{
     const q = getValue();
     if (!q) return;
    fetch(`/api/search?q=${q}`).then(res=>res.json()).then(hits=>setResults(hits))
   };
- 
 
   return (
     <Container
@@ -74,6 +73,11 @@ export default function Header() {
               </ul>
               </div>}
           </div>
+          <li>
+            <Link className="text-sm font-semibold" href="/" locale={restOfLocales[0]}>
+              {restOfLocales[0].toUpperCase()}
+            </Link>
+          </li>
         </Container>
       </nav>
     </Container>
